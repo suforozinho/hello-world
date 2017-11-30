@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Practice</title>
+</head>
+<body>
+<p>Eu sorteiei alguns números</p>
+<p>Tente adivinhar escrevendo no campo abaixo os números, mas tem que ser um de cada vez, quando escrever um número, clique em Submit.</p>
+<p>Para remover um número, clique em Remove.</p>
+<p>Para ver quantos você acertou, clique em Verificar.</p>
+<p>Boa Sorte!</p>
+<input type="text" id="numero">
+<input type="submit" id="submit" value="Submit">
+<input type="submit" id="remove" value="Remove">
+<input type="submit" id="verificar" value="Verificar">
+<input type="submit" id="checar" value="checar">
+</body>
+</html>
+<script>
+var sorteados = [];
+var chutados = [];
+
+while (sorteados.length < 6) {
+	var randomNumber = Math.round(Math.random() * 100);
+	sorteados.push(randomNumber);
+}
+
+function pegarNumero() {
+	var numero = parseInt(document.getElementById("numero").value);
+	for (var i = 0; i < chutados.length; i++) {
+		if (chutados[i] == numero) {
+			alert("Esse número já foi adicionado");
+			return;
+		}
+	}
+	chutados.push(numero);
+	console.log(chutados);
+};
+
+function removerNumero() {
+	var numero = parseInt(document.getElementById("numero").value);
+	for (var i = 0; i < chutados.length; i++) {
+		if (chutados[i] == numero) {
+			chutados.splice(i);
+			console.log(chutados);
+			return;
+		}
+	}
+	alert("Parece que esse número não foi adicionado")
+}
+
+function verificação() {
+	var numero = parseInt(document.getElementById("numero").value);
+	var acertos = 0;
+
+	if (chutados.length < sorteados.length) {
+		alert("Adicione mais números");
+		return;
+	}
+	else if (chutados.length > sorteados.length) {
+		alert("Remova alguns números porque você adicionou mais do que 6");
+		return;
+	}
+
+	for (var i = 0; i < sorteados.length; i++) {
+		for (var a = 0; a < chutados.length; a++) {
+			if (sorteados[i] == chutados[a]) {
+				acertos++;
+			}
+		}
+	}
+
+	alert("Você acertou " + acertos + " números!");
+};
+
+var submit = document.getElementById("submit");
+submit.addEventListener("click", function() {
+	pegarNumero();
+});
+
+var remove = document.getElementById("remove");
+remove.addEventListener("click", function() {
+	removerNumero();
+});
+
+var verificar = document.getElementById("verificar");
+verificar.addEventListener("click", function() {
+	verificação();
+});
+
+var checar = document.getElementById("checar") 
+checar.addEventListener("click", function() {
+	console.log(sorteados);
+});
+</script>

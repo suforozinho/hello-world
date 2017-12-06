@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Practice</title>
+</head>
+<body>
+<canvas id="tutorial" width="300" height="200"></canvas>
+</body>
+</html>
+
+<style>
+#tutorial {
+	border: 1px solid black;
+}
+</style>
+
+<script>
+var canvas = document.getElementById("tutorial");
+var ctx = canvas.getContext("2d");
+
+function radians(degrees) {
+	return (Math.PI/180) * degrees;
+};
+
+ctx.beginPath();
+ctx.moveTo(150, 100);
+ctx.arc(100, 100, 50, 0, Math.PI * 2, true);
+ctx.moveTo(130, 100);
+ctx.arc(100, 100, 30, 0, Math.PI, false);
+ctx.moveTo(117, 90);
+ctx.arc(113, 90, 5, 0, Math.PI * 2, true);
+ctx.moveTo(90, 90);
+ctx.arc(85, 90, 5, 0, Math.PI * 2, true);
+ctx.stroke();
+</script>
